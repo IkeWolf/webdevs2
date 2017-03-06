@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <style type="text/css">
+    p{ font-family : Tahoma, Geneva, sans-serif;
+    }
+    h1{ font-family : Tahoma, Geneva, sans-serif
+    }
+    
+  </style>
+  <meta charset="utf-8">
+  <title>jQuery.parseXML demo</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+<body background = https://www.rentcafe.com/Content/Marketing/timelapse/chicago-then-and-now/img/View-from-Hancock-2012.jpg>
+  <h1>Choose Your Bus</h1>
+ <select id="dropDown" >
+   </select>
+ 
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script>
+        $(function() {
+          
+          
+          var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+          
+          var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getroutes";
+          
+          
+          $.ajax({
+              url: apiPassThruUrl,
+              dataType: "json",
+              method: 'GET',
+              data: {"apiEndpoint": apiEndpoint,
+                      "key" : "uqwvdFWGAsgdsZLK4D5kLvDUi",
+                      "format":"json"}
+            }).done (function (data) {
+              console.log(data);
+              
+             
+              $.each(data["bustime-response"]["routes"], function(i,v) {
+                  $("#dropDown").append("<option value = 'route'" + ">" + "Route #" + v.rt + ", " + v.rtnm + "<br>");
+                
+              });
+
+            });
+        });
+            
+  
+</script>
+<br>
+<p>Once you have your bus selected, press the button to see arival time</p>
+<button type="button" >Click Me!</button>
+   
+</body>
+</html>
